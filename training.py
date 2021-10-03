@@ -24,13 +24,13 @@ output_signature = (x_spec, y_spec)
 
 
 tf_train_data = tf.data.Dataset.from_tensor_slices(
-    (X_train, Y_train)
+    (X_train, Y_train, output_signature = output_signature)
 ).batch(batch_size)
 
 
 tf_val_data = tf.data.Dataset.from_tensor_slices(
-    (data.val_data()[0], data.val_data()[1])
-).batch(8000 * 3 - n_year + 1)
+    (X_val, Y_val, output_signature = output_signature)
+).batch(batch_size)
 
 ## Normalize the data
 
