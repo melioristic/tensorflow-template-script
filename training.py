@@ -9,8 +9,8 @@ output_dim = 1 # dimension of the output
 batch_size = 32
 
 x_spec = tf.TensorSpec(
-    shape=(n_sample, input_dim_1, input_dim_2), name="train_X", dtype=tf.dtypes.float64
-)
+    shape=(dim_1, input_dim_1, input_dim_2), name="train_X", dtype=tf.float64)
+
 y_spec = tf.TensorSpec(shape=(dim_1, output_dim), name="train_Y", dtype=tf.float64)
 
 output_signature = (x_spec, y_spec)
@@ -24,12 +24,12 @@ output_signature = (x_spec, y_spec)
 
 
 tf_train_data = tf.data.Dataset.from_tensor_slices(
-    (X_train, Y_train, output_signature = output_signature)
+    (X_train, Y_train), output_signature = output_signature
 ).batch(batch_size)
 
 
 tf_val_data = tf.data.Dataset.from_tensor_slices(
-    (X_val, Y_val, output_signature = output_signature)
+    (X_val, Y_val), output_signature = output_signature
 ).batch(batch_size)
 
 ## Normalize the data
